@@ -6,39 +6,42 @@
   <title>Convenio Logística Sevilla 2026-2030</title>
   <style>
     :root {
-      --primary: #1e3a8a;
-      --primary-light: #3b82f6;
-      --bg: #f8fafc;
+      /* Cambio a gama de colores rojos */
+      --primary: #991b1b;
+      --primary-light: #dc2626;
+      --bg: #fdf2f2;
       --card-bg: #ffffff;
-      --text: #1e293b;
-      --border: #e2e8f0;
+      --text: #1f2937;
+      --border: #fca5a5;
       --highlight: #fef08a;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, -apple-system, sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
 
-    header { background-color: var(--primary); color: white; padding: 1.5rem 1rem; text-align: center; sticky: top; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-    header h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    header { background-color: var(--primary); color: white; padding: 1.5rem 1rem; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+    header h1 { font-size: 1.3rem; margin-bottom: 0.5rem; }
 
-    .search-box { max-width: 600px; margin: 0.5rem auto 1rem auto; padding: 0 1rem; }
+    .search-box { max-width: 600px; margin: 0.5rem auto 0 auto; padding: 0 1rem; }
     .search-box input { width: 100%; padding: 0.75rem 1rem; border: none; border-radius: 8px; font-size: 1rem; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
-    nav.tabs { display: flex; overflow-x: auto; background: white; border-bottom: 1px solid var(--border); padding: 0 1rem; gap: 0.5rem; position: sticky; top: 125px; z-index: 90; }
-    nav.tabs button { padding: 0.75rem 1rem; border: none; background: none; font-weight: 600; color: #64748b; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; }
+    nav.tabs { display: flex; overflow-x: auto; background: white; border-bottom: 2px solid var(--border); padding: 0 1rem; gap: 0.5rem; position: sticky; top: 115px; z-index: 90; }
+    nav.tabs button { padding: 0.75rem 1rem; border: none; background: none; font-weight: 600; color: #6b7280; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; }
     nav.tabs button.active { color: var(--primary-light); border-bottom-color: var(--primary-light); }
 
     main { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; }
-    .article-card { background: var(--card-bg); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .article-card h2 { color: var(--primary); font-size: 1.25rem; margin-bottom: 0.75rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.5rem; }
-    .article-card pre { font-family: inherit; white-space: pre-wrap; word-wrap: break-word; }
+    .article-card { background: var(--card-bg); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #fee2e2; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .article-card h2 { color: var(--primary); font-size: 1.2rem; margin-bottom: 0.75rem; border-bottom: 2px solid #fff1f1; padding-bottom: 0.5rem; }
+    
+    /* Mantiene los saltos de línea sin cortar texto */
+    .article-content { white-space: pre-wrap; word-wrap: break-word; font-size: 0.95rem; }
 
     mark { background-color: var(--highlight); padding: 0.1em 0.2em; border-radius: 2px; }
-    .no-results { text-align: center; padding: 3rem; color: #64748b; font-size: 1.1rem; }
+    .no-results { text-align: center; padding: 3rem; color: #6b7280; font-size: 1.1rem; }
 
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { border: 1px solid var(--border); padding: 0.5rem; text-align: left; }
-    th { background: #f1f5f9; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
+    th, td { border: 1px solid var(--border); padding: 0.6rem; text-align: left; }
+    th { background: #fee2e2; color: var(--primary); }
   </style>
 </head>
 <body>
@@ -46,7 +49,7 @@
   <header>
     <h1>Convenio Colectivo de Operadores Logísticos de Sevilla (2026-2030)</h1>
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Buscar por palabra clave (ej. vacaciones, horas, salario)...">
+      <input type="text" id="searchInput" placeholder="Buscar artículo o término (ej: nocturnidad, vacaciones, mozo)...">
     </div>
   </header>
 
@@ -59,105 +62,601 @@
       {
         capitulo: "Capítulo I. Ámbito y Garantías",
         articulos: [
-          { num: "Artículo 1", titulo: "Ámbito funcional", texto: "El presente Convenio Colectivo establece las normas que regulan las condiciones de trabajo de los Operadores Logísticos..." },
-          { num: "Artículo 2", titulo: "Ámbito territorial", texto: "El presente Convenio Colectivo será de aplicación en todos los Centros de Trabajo radicados en el ámbito territorial de la provincia de Sevilla." },
-          { num: "Artículo 3", titulo: "Ámbito personal", texto: "Las presentes condiciones de trabajo afectarán a todo el personal empleado en las empresas incluidas en los ámbitos anteriores, salvo a los que desempeñen el cargo de consejeros..." },
-          { num: "Artículo 4", titulo: "Ámbito temporal", texto: "El presente Convenio entrará en vigor el día siguiente de la fecha en que la autoridad laboral ordene su publicación en el Boletín Oficial de la Provincia de Sevilla, alcanzando su vigencia hasta el día 31 de diciembre de 2030..." },
-          { num: "Artículo 5", titulo: "Denuncia y revisión", texto: "La denuncia del Convenio Colectivo, efectuada por cualquiera de las partes legitimadas para ello de conformidad con el art. 87 del Estatuto de los Trabajadores..." },
-          { num: "Artículo 6", titulo: "Concurrencia de convenio", texto: "El presente Convenio tiene fuerza normativa y obliga por todo tiempo de su vigencia, con exclusión de cualquier otro..." },
-          { num: "Artículo 7", titulo: "Compensación y absorción", texto: "Las cantidades que las empresas hubieren satisfecho en los años anteriores como incremento respecto de las que venían satisfaciendo serán compensadas y absorbidas..." },
-          { num: "Artículo 8", titulo: "Garantía «ad personam»", texto: "Las empresas que tengan establecidas, con carácter voluntario, para los trabajadores remuneraciones superiores a las establecidas en este convenio..." },
-          { num: "Artículo 9", titulo: "Vinculación a la totalidad", texto: "Las condiciones de todo orden pactadas en este convenio forman un todo orgánico e indivisible..." },
-          { num: "Artículo 10", titulo: "Normas subsidiarias", texto: "En lo no previsto en el presente Convenio se estará a lo dispuesto en el Acuerdo Nacional de Transportes de Mercancías por Carretera..." }
+          { 
+            num: "Artículo 1", 
+            titulo: "Ámbito funcional", 
+            texto: `El presente Convenio Colectivo establece las normas que regulan las condiciones de trabajo de los Operadores Logísticos, entendiendo por tales a las empresas, que tengan por finalidad una actividad mercantil dedicada que diseñar, organizar, gestionar y controlar los procesos de una o varias fases de la cadena de suministro (aprovisionamiento, transporte, almacenaje, distribución e incluso, ciertas actividades del proceso productivo), utilizando para ello infraestructuras físicas, tecnología y sistemas de información, propios o ajenos y que no tuvieran Convenio Colectivo propio concurrente. Los Operador Logísticos responden ante su cliente de los servicios acordados y es su interlocutor directo.
+
+Así mismo y a efectos de este Convenio Colectivo se entiende que también son Operadores Logísticos los almacenistas-distribuidores, definidos por el art. 125 de la Ley 16/1987, de 30 de julio de Ordenación de los Transportes Terrestres, como las personas físicas o jurídicas que reciben en depósito en sus almacenes o locales mercancías o bienes ajenos, realizan en relación con los mismos las funciones de almacenaje, ruptura de cargas, u otras complementarias que resulten necesarias, y llevan a cabo o gestionan la distribución de los mismos, de acuerdo con las instrucciones de los depositantes.` 
+          },
+          { 
+            num: "Artículo 2", 
+            titulo: "Ámbito territorial", 
+            texto: `El presente Convenio Colectivo será de aplicación en todos los Centros de Trabajo radicados en el ámbito territorial de la provincia de Sevilla.` 
+          },
+          { 
+            num: "Artículo 3", 
+            titulo: "Ámbito personal", 
+            texto: `Las presentes condiciones de trabajo afectarán a todo el personal empleado en las empresas incluidas en los ámbitos anteriores, salvo a los que desempeñen el cargo de consejeros en empresas que revistan la forma jurídica de sociedad, o de alta dirección, y a excepción también de la actividad de las personas prestadoras del servicio de transporte al amparo de autorizaciones administrativas de las que sean titulares, realizada, mediante el correspondiente precio, con vehículos comerciales de servicio público cuya propiedad o poder directo de disposición ostenten, aun cuando dichos servicios se realicen de forma continuada para un mismo cargador o comercializador.` 
+          },
+          { 
+            num: "Artículo 4", 
+            titulo: "Ámbito temporal", 
+            texto: `El presente Convenio entrará en vigor el día siguiente de la fecha en que la autoridad laboral ordene su publicación en el Boletín Oficial de la Provincia de Sevilla, alcanzando su vigencia hasta el día 31 de diciembre de 2030, prorrogándose tácitamente por períodos de un año natural, salvo denuncia por cualquiera de las partes signatarias del Convenio.
+
+Sus efectos económicos se retrotraerán al día 1 de enero de 2026, salvo disposición expresa contenida en el propio Convenio.` 
+          },
+          { 
+            num: "Artículo 5", 
+            titulo: "Denuncia y revisión", 
+            texto: `La denuncia del Convenio Colectivo, efectuada por cualquiera de las partes legitimadas para ello de conformidad con el art. 87 del Estatuto de los Trabajadores, contendrá los preceptos que se pretenden revisar, así como el alcance de la revisión.
+
+Denunciado el mismo, y hasta tanto no se logre acuerdo expreso, mantendrán plena validez las estipulaciones de carácter obligacional, normativo o económico, del presente convenio colectivo.
+
+La denuncia, deberá realizarse mediante notificación fehaciente cursada a las otras organizaciones con una antelación mínima de un mes a la fecha de su vencimiento inicial o al de cualquiera de sus prórrogas, efectuada conforme al párrafo precedente; en caso contrario, se prorrogará éste de manera automática de acuerdo con la Ley.
+
+En plazo máximo de seis meses a partir de la recepción de la comunicación, se precederá a constituir la comisión negociadora; la parte receptora de la comunicación deberá responder a la propuesta de negociación y ambas partes establecerán un calendario o plan de negociación, debiéndose iniciar esta en un plazo máximo de quince días a contar desde la constitución de la comisión negociadora.
+
+El plazo máximo para la negociación de un nuevo será de catorce meses la fecha de pérdida de su vigencia.` 
+          },
+          { 
+            num: "Artículo 6", 
+            titulo: "Concurrencia de convenio", 
+            texto: `El presente Convenio tiene fuerza normativa y obliga por todo tiempo de su vigencia, con exclusión de cualquier otro, a la totalidad de Empresas y trabajadores, dentro de los ámbitos señalados.
+
+No obstante lo dispuesto en el apartado anterior, las empresas del sector que tengan Convenio propio, podrán adherirse al presente convenio cuando exista conformidad de los representantes legales de los trabajadores de dichas empresas y/o de las todas las Organizaciones firmantes del presente convenio.` 
+          },
+          { 
+            num: "Artículo 7", 
+            titulo: "Compensación y absorción", 
+            texto: `Las cantidades que las empresas hubieren satisfecho en los años anteriores como incremento respecto de las que venían satisfaciendo serán compensadas y absorbidas de las cantidades que en concepto de atrasos de convenio se abonen en el año 2026.` 
+          },
+          { 
+            num: "Artículo 8", 
+            titulo: "Garantía ad personam", 
+            texto: `Las empresas que tengan establecidas, con carácter voluntario, para los trabajadores remuneraciones superiores a las establecidas en este convenio, consideradas globalmente y en cómputo anual, vendrán obligadas a respetarlas a título personal.` 
+          },
+          { 
+            num: "Artículo 9", 
+            titulo: "Vinculación a la totalidad", 
+            texto: `Las condiciones de todo orden pactadas en este convenio forman un todo orgánico e indivisible y, a efectos de su aplicación práctica, serán consideradas globalmente.
+
+En el supuesto de que por la autoridad laboral o por la jurisdicción del orden social se declarase la nulidad total o parcial de alguna de las cláusulas de este convenio colectivo, quedará en su totalidad sin eficacia alguna, comprometiéndose ambas partes a volver a negociarlo de nuevo en su totalidad.` 
+          },
+          { 
+            num: "Artículo 10", 
+            titulo: "Normas subsidiarias", 
+            texto: `En lo no previsto en el presente Convenio se estará a lo dispuesto en el Acuerdo Nacional de Transportes de Mercancías por Carretera y demás legislación laboral o convencional aplicable.` 
+          }
         ]
       },
       {
-        capitulo: "Capítulo II. Organización del trabajo",
+        capitulo: "Capítulo II. Organización del Trabajo",
         articulos: [
-          { num: "Artículo 11", titulo: "Principios generales", texto: "La organización práctica del trabajo, con sujeción a las presentes disposiciones y a la legislación vigente es facultad de la Dirección de las Empresas..." },
-          { num: "Artículo 12", titulo: "Clasificación profesional", texto: "La clasificación profesional se fundamenta en grupos profesionales. Se define al grupo profesional como aquella parte organizativa de la empresa..." },
-          { num: "Artículo 13", titulo: "Grupo profesional de operaciones", texto: "A) Definición del grupo: Los trabajadores integrados en este grupo profesional realizan la ejecución de toda la actividad operativa en los almacenes...\nNivel 1...\nNivel 2 (Incluye Mozo de Mantenimiento y Mozo de Inserción)...\nNivel 3..." },
-          { num: "Artículo 14", titulo: "Grupo Profesional de Administración", texto: "Definición del grupo: Las funciones profesionales de este grupo están vinculadas a tareas de carácter administrativo...\nNivel 1, Nivel 2, Nivel 3." },
-          { num: "Artículo 15", titulo: "Grupo Profesional de Técnicos", texto: "Definición del grupo: Realización de tareas de soporte técnico especializado...\nNivel 1 (Incluye Oficial de Mantenimiento), Nivel 2, Nivel 3." },
-          { num: "Artículo 16", titulo: "Grupo Profesional de Mandos", texto: "Definición del grupo: Planificación, programación, coordinación y supervisión...\nNivel 1, Nivel 2, Nivel 3, Nivel 4." },
-          { num: "Artículo 16 Bis", titulo: "Promoción profesional", texto: "1. Al cumplir tres años en la categoría de Mozo o Auxiliar Administrativo, pasará a ostentar la categoría de Ayudante o Mozo Especializado, o la de Oficial de Segunda Administrativo..." }
+          {
+            num: "Artículo 11",
+            titulo: "Principios generales",
+            texto: `La organización práctica del trabajo, con sujeción a las presentes disposiciones y a la legislación vigente es facultad de la Dirección de las Empresas.
+
+Sin merma de la facultad que le corresponde a la Dirección o a sus Representantes Legales, los Comités de Empresa o Delegados de Personal deberán ser informados de los cambios organizativos que se produzcan, para que emitan el informe previsto en el art. 64.4 del Real Decreto Legislativo 1/1995 de 24 de Marzo por el que se aprueba el texto refundido de la Ley del Estatuto de los Trabajadores.`
+          },
+          {
+            num: "Artículo 12",
+            titulo: "Clasificación profesional",
+            texto: `La clasificación profesional se fundamenta en grupos profesionales.
+Se define al grupo profesional como aquella parte organizativa de la empresa que surge de la agrupación de puestos de naturaleza común en cuanto al trabajo que desarrollan.
+El grupo profesional es, por tanto, una forma de clasificación que agrupa de manera homogénea las aptitudes profesionales, las titulaciones requeridas y el contenido general de la prestación desde el punto de vista organizativo, constituyendo además el marco funcional del trabajo a desempeñar por el empleado.
+
+En función de las aptitudes profesionales, titulaciones y contenido general de la prestación, se establecen, con carácter normativo, cuatro Grupos Profesionales y los contenidos específicos que los definen. Este sistema esta configurado por cuatro grupos profesionales: Operaciones, Administración, Técnicos y Mandos y cada uno de ellos, por tres niveles, excepto el último grupo que tendrá cuatro niveles, estableciéndose con carácter general los siguientes elementos definidores:
+- Conocimiento y experiencia.
+- Iniciativa.
+- Autonomía en el desempeño de tareas.
+- Responsabilidad.
+- Resolución de problemas.
+- Mando.`
+          },
+          {
+            num: "Artículo 13",
+            titulo: "Grupo profesional de operaciones",
+            texto: `A) Definición del grupo:
+Los trabajadores integrados en este grupo profesional realizan la ejecución de toda la actividad operativa en los almacenes y centros de distribución de la empresa utilizando para ello los medios y herramientas necesarias, controlando las actividades de preparación, mantenimiento y puesta a punto, tanto de la maquinaria como de los equipos necesarios para el adecuado desempeño de sus funciones.
+Estas actividades operativas se desarrollarán de acuerdo con los programas existentes así como con las directrices de los responsables.
+Todo ello con el objetivo de asegurar y garantizar los estándares de calidad y correcto cumplimiento de las actividades de distribución y almacén.
+
+B) Funciones generales:
+Desarrollo y realización de las operaciones de almacenaje, movimiento de materiales y mercancías, distribución, entradas y salidas y control de inventarios.
+Preparación y puesta a punto de herramientas de trabajo. Mantenimiento preventivo primario y detección de anomalías. Control de variables estándar del proceso.
+Cumplimentación de documentos básicos. Ejecución de procesos operativos auxiliares.
+
+Nivel 1.
+Las funciones profesionales que se hallan encuadradas en este nivel corresponden a los puestos de trabajo que ejecutan actividades operativas estandarizadas en los almacenes o plataformas de distribución de la empresa, almacenaje, movimiento interno de materiales y mercancías, reposición y que puedan requerir para su desempeño el uso y/o control de herramientas y equipos. La realización de su actividad se llevará a cabo bajo la supervisión de un superior.
+
+Nivel 2.
+Las funciones profesionales del nivel 2 son aquellas que en su desempeño ejecutan actividades operativas estandarizadas en los almacenes o plataformas de distribución de la empresa, almacenaje, movimiento interno de material y mercancías, reposición y que pueden requerir para su desempeño el uso y/o control de maquinarias, herramientas y equipos, con cierto grado de autonomía.
+Dada la naturaleza de las funciones profesionales a realizar dentro de este nivel, la autonomía concedida a estos puestos para encontrar soluciones a los problemas planteados se encuadra dentro de instrucciones y procedimientos de trabajo estandarizados, en las que se indica el tipo y el volumen de trabajo a desarrollar, que requieren una iniciativa muy normalizada, reportando cualquier situación que se aparte de la norma.
+Los problemas planteados a los titulares de estos puestos presentan situaciones muy semejantes, en las que la solución requiere la elección entre cosas aprendidas.
+Dentro de este nivel 2 se considera al Mozo de Mantenimiento (personal con conocimientos técnicos y/o prácticos que tiene como funciones esenciales mantener el buen funcionamiento de las instalaciones y dependencias, y la reparación elemental de equipamiento y material siempre que no implique especial dificultad técnica) con el mismo nivel salarial que un mozo especialista.
+Igualmente dentro de este nivel 2 se considera al Mozo de Inserción que con la finalidad de poder determinar las aptitudes profesionales de los trabajadores de nueva incorporación en la empresa, y con el objeto de dotarle de un iter formativo y de experiencia profesional en todos los ámbitos competenciales propios del puesto de mozo especializado, se asigna este nivel de trabajo en formación/inserción. Asimismo con la voluntad de fomentar la estabilidad en el empleo, su contratación será siempre bajo la modalidad laboral de contrato indefinido. Su período de prueba específico será de dos meses y su salario será el que se determina en tablas bajo la denominación Mozo de Inserción. Cumplido el trabajador en la empresa dos años de antigüedad en la categoría de Mozo de Inserción, pasará a ostentar la categoría profesional Mozo Especializado.
+
+Nivel 3.
+Las funciones profesionales propias del nivel 3 son aquellas que en su desempeño programan y ejecutan su propio trabajo, con destreza en el manejo de equipo especializado y complejo. En su actividad profesional, se desarrollan actividades de naturaleza específica y un conocimiento adecuado de todas las actividades relacionadas. Asimismo, se caracteriza esta función profesional por la labor de coordinación de un equipo homogéneo de trabajadores.
+Las respuestas profesionales a las dificultades, problemas o imprevistos que se puedan plantear en su desempeño profesional son normalmente respuestas que previamente han de ser conocidas o aprendidas entre un abanico limitado.
+El nivel de autonomía se halla enmarcado dentro de procedimientos de trabajo conocidos que pueden y deben solucionar los posibles problemas que se puedan plantear. Dicho nivel de autonomía está encuadrado dentro de esas directrices que pueden ser variadas, si bien han de ser supervisadas con posterioridad.`
+          },
+          {
+            num: "Artículo 14",
+            titulo: "Grupo Profesional de Administración",
+            texto: `Definición del grupo.
+Las funciones profesionales que realizan los trabajadores de adscritos a este grupo son aquellas vinculadas a tareas de carácter administrativo de acuerdo con directrices, procedimientos y procesos definidos que se orientan al aseguramiento de un adecuado y correcto tratamiento y control de la información.
+
+Funciones generales.
+Gestiones vinculadas a los procesos administrativos propios de la organización. Introducción y gestión de datos en los correspondientes sistemas informáticos. Realización de análisis y estadísticas. Realización de documentos e informes. Tareas de archivo. Atención telefónica Servicio a clientes. Recepción.
+
+Nivel 1.
+Las funciones profesionales propias de este nivel son aquellas que desarrollan actividades vinculadas a procesos administrativos, bajo supervisión directa, disponiendo de normas y procedimientos que permiten el desarrollo de los procesos administrativos. Son puestos que se enfrentan a problemas en donde las normativas y procedimientos ejercen una fuerte influencia para su resolución pero no proporcionan todas las respuestas adecuadas, por lo que realiza tareas de apoyo a sus superiores dentro de su ámbito de actuación para que estos puedan encontrar alternativas y adoptar la solución adecuada.
+El menor conocimiento de los sistemas y medios de trabajo pueden hacer necesario una mayor información, formación y/o supervisión.
+
+Nivel 2.
+Las funciones profesionales del nivel 2 se refieren a actividades vinculadas a procesos administrativos especializados disponiendo de normas y procedimientos que facilitan las respuestas a los problemas e incidencias que puedan surgir, pero no todas las respuestas se encuentran en los mismos. De este modo, la persona que se halle en este nivel deberá estar en condiciones de plantear posibles alternativas y respuestas a sus supervisores, para que se pueda tomar la decisión correcta y adecuada. En este nivel, los procesos administrativos pueden llegar a tener un cierto nivel de complejidad, pero en todo caso, cualquier decisión que se tome deberá estar sujeta a la revisión y/o supervisión del superior correspondiente.
+
+Nivel 3.
+Las funciones profesionales propias de este nivel, vienen definidas por la realización de actividades vinculadas a procedimientos de carácter administrativo especializados en los que la persona se responsabiliza del control y de la ejecución de la totalidad del proceso. Existe, por tanto, un alto nivel de autonomía. En el desarrollo de esta función será habitual la vinculación y relación con otros puestos o departamentos de la empresa.
+Estas funciones profesionales se enfrentarán a problemas técnicos de complejidad, deberán en ocasiones influir con sus puntos de vista en otras personas y departamentos, deberán aportar soluciones documentadas y justificadas, siempre todo ello dentro de las normas y procedimientos que regulan la organización. Algunos puestos encuadrados en este nivel podrán tener supervisión sobre personas.`
+          },
+          {
+            num: "Artículo 15",
+            titulo: "Grupo Profesional de Técnicos",
+            texto: `Definición del grupo.
+Las funciones profesionales a desarrollar por los trabajadores y que se encuadren dentro de este Grupo Profesional se caracterizarán por la realización de tareas de soporte técnico especializado tanto a los procesos productivos, comerciales y/o de gestión de la empresa y a cualesquiera otros en los que sea necesario una cualificación técnica especial y de soporte con el fin de colaborar a la consecución de resultados en las mejores condiciones de calidad y plazo.
+
+Funciones generales:
+Planificación de actividades. Análisis de procesos. Elaboración de trabajos cualificados. Cumplimentación y control de información. Participación en proyectos específicos. Soporte técnico especializado. Responsabilidades, en su área de influencia.
+
+Nivel 1.
+Las funciones profesionales que se llevan a cabo dentro de este nivel se caracterizan por la ejecución técnica de operaciones en aquellas áreas a las que se adscriben. Para el desarrollo de estas funciones se requieren conocimientos especializados dados por la formación media o superior y/o la necesaria experiencia profesional.
+Colaboran y se relacionan con otras personas y/o departamentos y deben conocer la tipología de los problemas a resolver y los objetivos que desde esa función deben conseguirse. El desarrollo de esta función profesional y en este nivel se efectúa dentro de las directrices de sus superiores y con cierto grado de autonomía en la toma de decisiones, si bien éstas deberán estar acordes con los criterios de su superior inmediato.
+Dentro de este Grupo se considera al Oficial de Mantenimiento, personal con conocimientos técnicos y prácticos que tiene como funciones esenciales mantener el buen funcionamiento de las instalaciones y dependencias, y la reparación de equipamiento y material.
+
+Nivel 2.
+La función profesional en este nivel se caracteriza por la ejecución técnica de determinadas operaciones de los proyectos en los que se adscriben, son especialistas con un elevado nivel de experiencia profesional en el área funcional en la que se encuadran.
+Son técnicos cualificados con experiencia, programan y organizan su trabajo de acuerdo con las directrices de sus superiores y supervisan el trabajo de su equipo de colaboradores y asistentes.
+Deben relacionarse con otros, resolver problemas complejos de gran variedad, para lo cual disponen de los procedimientos establecidos, aunque se exige tener criterios propios para elegir la solución más adecuada, analizando y extrapolando las posibles soluciones. Están relacionados con un pequeño volumen de recursos.
+
+Nivel 3.
+La función profesional de los trabajadores de que se hallen encuadrados en este nivel se caracteriza por el desarrollo de actividades de planificación técnica y ejecución de aquellos proyectos asignados en función de las áreas a las que se hallen encomendados. Se une a la formación una experiencia dilatada y especializada. Pueden liderar proyectos de desarrollo y para ello puede ser necesaria la supervisión de equipos multidisciplinares ejerciendo una supervisión jerárquica y funcional.
+El grado de autonomía es elevado y amplio, por la propia naturaleza de sus funciones, pero ello no significa la ausencia de supervisión y control que se desarrollará de acuerdo con la propia naturaleza del proyecto a desarrollar y con las normas generales de la organización. Tienen total responsabilidad sobre los recursos que manejan.`
+          },
+          {
+            num: "Artículo 16",
+            titulo: "Grupo Profesional de Mandos",
+            texto: `Definición del grupo.
+La función profesional del personal que se encuadra dentro de este grupo se caracteriza por el desempeño profesional dentro de los siguientes parámetros:
+Actividades como planificación, programación, coordinación y supervisión de todos aquellos procesos bajo su dependencia y aquellos que forman parte del proceso logístico de la empresa. Toda esta actividad es llevada a cabo bajo las directrices de los supervisores y en coherencia con los planes y programas puestos en marcha por la organización. El objetivo básico de esta función profesional es garantizar el correcto desarrollo y funcionamiento de la organización, en su faceta de responsabilidad, y todo ello dentro de los más adecuados parámetros de productividad, seguridad, calidad, plazos entre otros y mediante la adecuada y óptima utilización de los recursos humanos y materiales.
+
+Funciones generales:
+Planificación y/o programación de trabajos y actividades. Supervisión y control de procesos, personas y medios materiales. Coordinación de unidades organizativas. Elaboración de informes. Supervisión de la ejecución de trabajos. Control y coordinación de trabajos de las empresas externas. Responsabilidad en su área de influencia de las cuestiones de Seguridad y salud Laboral. Soporte técnico especializado.
+
+Nivel 1.
+Estos puestos son responsables de asegurar la homogeneidad de los criterios de realización del trabajo en una unidad o centro logístico de pequeño volumen, así como de garantizar la implantación de soluciones a posibles problemas recurrentes dentro de su ámbito de responsabilidad, para lo que se requieren habilidades especializadas no puramente teóricas, adquiridas a través de experiencia en el trabajo y en parte también por cualificaciones profesionales. Para el desarrollo de sus funciones deben coordinar y supervisar de forma próxima el trabajo y los resultados de un equipo homogéneo de pequeño volumen. En el desarrollo de la función afrontan problemas de cierta complejidad y variedad. La experiencia y conocimientos de las personas que desarrollen esta función debe permitir encontrar la solución más acertada contando para ello con elementos esenciales para su desempeño, tales como la autonomía y creatividad.
+
+Nivel 2.
+Las funciones profesionales a desarrollar por los trabajadores que se encuadran dentro del presente nivel son responsables de asegurar la homogeneidad de los criterios de supervisión de la realización del trabajo de un equipo o turno, dentro de un centro logístico de gran volumen, o en un almacén de mediano volumen, así como de garantizar la implantación de soluciones a posibles problemas recurrentes dentro de su área de competencia o que superan la inmediatez de los mismos, integrando y coordinando sus actividades con otras áreas organizativas...
+
+Nivel 3.
+Las funciones profesionales a desarrollar por los trabajadores que se encuadran dentro del presente nivel asumen la responsabilidad de asegurar la homogeneidad de los criterios de organización, supervisión y realización del trabajo de un centro logístico de gran volumen o de la dirección de un centro de mediano volumen...
+
+Nivel 4.
+Las funciones profesionales a desarrollar por los trabajadores que se encuadran dentro del presente nivel asumen la máxima responsabilidad en cuanto a la organización, supervisión y realización del trabajo se refiere de un centro logístico de gran volumen o de la dirección de un centro de mediano volumen...`
+          },
+          {
+            num: "Artículo 16 Bis",
+            titulo: "Promoción profesional",
+            texto: `1. Conforme al art. 23.2 del II Acuerdo General para las empresas de transporte de mercancías por carretera (BOE 76, de 29 de marzo de 2012), al cumplir el trabajador en la empresa tres años en la categoría de Mozo o de Auxiliar Administrativo, pasará a ostentar la categoría profesional de Ayudante o Mozo Especializado, o la de Oficial de Segunda Administrativo, respectivamente.
+
+2. Los trabajadores ascendidos automáticamente a las categorías de Ayudante o Mozo Especializado y de Oficial de Segunda Administrativo, según lo previsto en el párrafo precedente, tendrán como cometidos propios los correspondientes tanto a la categoría de origen como a la de ascenso.
+
+3. De conformidad al Art. 16.2 del II Acuerdo General para las empresas de transporte de mercancías por carretera (BOE 76, de 29 de marzo de 2012), los trabajadores que estuviesen desempeñando de manera efectiva y funcional la categoría de Capataz pasarán a denominarse Jefe de Equipo. Sobre las cuantías definidas en la nueva categoría profesional incluida en la tabla salarial operará el criterio general de compensación y absorción sobre las cuantías mayores que estuviese percibiendo el trabajador.`
+          }
         ]
       },
       {
         capitulo: "Capítulo III. Ingresos y Modalidades de Contrato",
         articulos: [
-          { num: "Artículo 17", titulo: "Período de prueba", texto: "Grupo de técnicos y mandos: 6 meses.\nGrupo de administración: 2 meses.\nGrupo de operaciones: Un mes." },
-          { num: "Artículo 18", titulo: "Contratación de trabajadores", texto: "Modalidades contractuales: Eventual por circunstancias de la producción, Obra o servicio determinado, Fijos discontinuos a tiempo parcial..." },
-          { num: "Artículo 18 bis", titulo: "Contratos formativos", texto: "Los contratos formativos de alternancia y para la obtención de práctica profesional podrán tener una duración máxima de dos años." },
-          { num: "Artículo 19", titulo: "Cambios de turno", texto: "En caso de que ausencias alcancen el 10% de la plantilla, la empresa podrá decidir el cambio de turno con criterios objetivos preavisando con 48 horas..." }
+          {
+            num: "Artículo 17",
+            titulo: "Período de prueba",
+            texto: `El ingreso de los trabajadores se considerará hecho a título de prueba, de acuerdo con la siguiente escala, correspondiente a la clasificación del personal en los distintos grupos profesionales enumerados en el art. 12. A saber:
+
+- Grupo de técnicos y mandos: 6 meses.
+- Grupo de administración: 2 meses.
+- Grupo de operaciones: Un mes.
+
+Estos períodos serán de trabajo efectivo, descontándose, por tanto, la situación de Incapacidad Temporal cualquiera que sea el motivo de la misma.`
+          },
+          {
+            num: "Artículo 18",
+            titulo: "Contratación de trabajadores",
+            texto: `La contratación de trabajadores se ajustará a las normas legales generales sobre colocación vigentes en cada momento y a las específicas que figuran en el presente Convenio Colectivo, comprometiéndose las empresas a la utilización de los distintos modos de contratación previstos en la Ley, de acuerdo con la finalidad de cada uno de los contratos.
+
+Serán de aplicación a las diferentes modalidades de contratación los siguientes apartados:
+a) Las condiciones pactadas en el presente Convenio Colectivo se refieren a la realización de la jornada máxima ordinaria pactada en su art. 25, por lo que se aplicarán proporcionalmente en función de la jornada efectiva que se realice.
+b) Todos los trabajadores disfrutarán de las mismas licencias o permisos, vacaciones retribuidas, regímenes de libranza semanal, pagas extraordinarias, opción a cursos de formación, etc., siempre que sean compatibles con la naturaleza de su contrato en proporción al tiempo efectivamente trabajado y del carácter divisible o indivisible de las prestaciones que pudieran corresponderles.
+c) Con independencia de la modalidad de contrato, el período de prueba se regirá conforme a lo previsto en el art. 17º del presente convenio.
+
+i) Contrato eventual por circunstancias de la producción.
+a) Se estará a lo dispuesto en el art. 15 del Texto Refundido de la Ley del Estatuto de los Trabajadores aprobado por Real Decreto Legislativo 1/1995 de 24 de marzo.
+b) Tendrá por objeto el atender las circunstancias del mercado, acumulación de tareas o exceso de pedidos aún tratándose de la actividad normal de la Empresa.
+c) La duración máxima de este contrato será de doce meses, dentro de un período de 18 meses de conformidad a lo dispuesto en el R.D.-ley 32/2021, de 28 de diciembre. En caso de que se concierte por un plazo inferior a 12 meses, podrá ser prorrogado mediante acuerdo de las partes, sin que la duración total del contrato pueda exceder de dicho límite máximo.
+
+ii) Contrato por obra o servicio determinado:
+a) Se estará a lo dispuesto en el art. 15 del Texto Refundido de la Ley del Estatuto de los Trabajadores aprobado por Real Decreto Legislativo 1/1995, de 24 de marzo de conformidad a lo dispuesto en el R.D.-ley 32/2021, de 28 de diciembre.
+Esta modalidad de contratación tiene por objeto la realización de obras o servicios concretos de duración incierta aunque limitada en el tiempo dentro de la actividad normal de la empresa y en el se harán constar las siguientes circunstancias: El carácter de la contratación; la fecha de inicio del contrato y La identificación concreta, exacta y suficiente de la obra o servicio que constituye el objeto del contrato.
+Para los trabajadores contratados para una obra o servicios de duración determinada, el contrato concluye con la terminación de la citada operación o periodo de tiempo para los que fueron expresamente contratados. No podrá ser invocada la terminación del contrato hasta la finalización de la obra, salvo en aquellos supuestos en que la terminación de la obra sea gradual.
+
+b) A los efectos de lo previsto en el art. 15.1.a) del Texto Refundido de la Ley del Estatuto de los Trabajadores aprobado por Real Decreto Legislativo 1/1995, de 24 de marzo, además de los contenidos generales, se identifican como trabajos o tareas con sustantividad propia, dentro de la actividad normal de las empresas del Sector, que pueden cubrirse con contratos para la realización de obras o servicios determinados, los trabajos o las campañas específicas, dentro de la actividad y tareas ligadas a contrato mercantil, las ferias, exposiciones, ventas especiales, promociones de productos o servicios propios o de terceros, y aquellas otras tareas comerciales o servicios logísticos que presenten perfiles propios y concretos del resto de la actividad.
+
+c) También se identifica como trabajo con sustantividad propia a los mismos efectos del párrafo primero del apartado anterior, la apertura o puesta en funcionamiento de nuevos almacenes o plataformas.
+
+d) La causa del contrato de trabajo es la consecución de la consolidación de la actividad empresarial y, en consecuencia, aquellos contratos de trabajo que, con anterioridad a la apertura del almacén o plataforma, se efectúen por parte de las empresas, siempre dentro del plazo de seis meses antes de la apertura, pueden acogerse a esta figura, pero sin que tales contratos anticipados puedan tener una duración superior a dos años.
+
+e) Para los trabajadores contratados para una obra o servicio de duración determinada, el contrato concluye con la terminación de la citada operación o periodo de tiempo para los que fueron expresamente contratados. No podrá ser invocada la terminación del contrato hasta la finalización de la obra, salvo en aquellos supuestos en que la terminación de la obra sea gradual. Estos contratos no podrán tener una duración superior a cuarenta y ocho meses. Transcurridos estos plazos, los trabajadores adquirirán la condición de trabajadores fijos de la empresa.
+
+Los contratos a tiempo parcial estipulados en los apartados i) y ii) podrán realizar horas complementarias según la normativa laboral vigente de hasta un 30% de la jornada ordinaria. La empresa preavisará al trabajador con al menos 24 horas de antelación a la realización de las horas complementarias.
+
+iii) De conformidad a lo establecido en el artículo 16.5 ET, las empresas podrán celebrar contratos fijos discontinuos a tiempo parcial.`
+          },
+          {
+            num: "Artículo 18 bis",
+            titulo: "Contratos formativos",
+            texto: `Los contratos formativos de alternancia, Trabajo-formación y para la obtención de la práctica profesional podrán tener una duración máxima de dos años.`
+          },
+          {
+            num: "Artículo 19",
+            titulo: "Cambios de turno",
+            texto: `En el caso de que las ausencias al trabajo alcancen el 10 por 100 de la plantilla de personal del centro de trabajo, la empresa podrá decidir con criterios objetivos, el cambio de turno de los trabajadores cuando lo necesite, por el tiempo que subsista tal índice de ausencias, previa comunicación al interesado y a los representantes de los trabajadores, con una antelación de cuarenta y ocho horas, respetando el descanso mínimo legal entre jornada y jornada, y sin que ello suponga disminución de la retribución para el trabajador.
+
+A efectos de determinación del índice de ausencia al trabajo, no se computará el crédito de horas de los representantes legales de los trabajadores, ni el número de trabajadores que pudieran encontrarse en situación de Incapacidad Temporal, vacaciones o con día de asuntos propios.
+
+Cuando las ausencias al trabajo se prolonguen por más de 7 días de tiempo, los trabajadores que hubieren sido cambiados de turno tendrán derecho a volver al turno de trabajo que tenían con anterioridad al cambio, si bien deberán ser sustituidos, de forma rotatoria, por otros trabajadores y así sucesivamente hasta que desaparezca la causa que motiva el cambio de turno.
+
+Trimestralmente se facilitará a los representantes legales de los trabajadores información sobre la evolución del absentismo. Dichos cambios de turno no tendrán la consideración legal de modificaciones sustanciales de las condiciones de trabajo.`
+          }
         ]
       },
       {
         capitulo: "Capítulo IV. Estructura Salarial",
         articulos: [
-          { num: "Artículo 20", titulo: "Estructura salarial y revisión salarial", texto: "Incrementos para 2026: 4% sobre tablas 2025 (cláusula revisión IPC).\n2027: 3%\n2028: 3%\n2029: 3%\n2030: 3%" },
-          { num: "Artículo 21", titulo: "Salario Base de Grupo", texto: "Remunera la jornada anual de trabajo efectivo pactada..." },
-          { num: "Artículo 22", titulo: "Complementos salariales", texto: "A. Personales. B. De puesto de trabajo. C. Por calidad o cantidad de trabajo." },
-          { num: "Artículo 23", titulo: "Productividad", texto: "Las retribuciones pactadas remuneran niveles normales de productividad..." },
-          { num: "Artículo 24", titulo: "Complemento personal de antigüedad", texto: "A los 5 años: 41.40 €/mes | A los 10 años: 81.76 €/mes | A los 15 años: 156.29 €/mes | A los 20 años: 312.60 €/mes | A los 25 años: 390.72 €/mes | A los 30 años o más: 483.10 €/mes." },
-          { num: "Artículo 25", titulo: "Plus de nocturnidad", texto: "Entre 10 p.m. y 6 a.m. Importe 2026: 2.32 € / hora." },
-          { num: "Artículo 26", titulo: "Plus de transporte", texto: "Por día efectivamente trabajado. Importe 2026: 7.26 € / día." },
-          { num: "Artículo 27", titulo: "Plus de trabajo penoso (Cámaras)", texto: "1. Refrigeradas (0º a 10º C): 41.16 €/mes.\n2. Congelación (-18º C o inferior): 8.36 €/día." },
-          { num: "Artículo 28", titulo: "Gratificaciones extraordinarias", texto: "Tres pagas extraordinarias: Primavera (30 marzo), Verano (30 junio), Navidad (15 diciembre). A razón de 30 días de Salario Base más Antigüedad." },
-          { num: "Artículo 29", titulo: "Dietas", texto: "2026: Almuerzo: 15.92 € | Cena: 15.92 € | Pernoctación y desayuno: 43.83 € | Media dieta: 22.56 €." }
+          {
+            num: "Artículo 20",
+            titulo: "Estructura salarial y revisión salarial",
+            texto: `Las retribuciones de los trabajadores incluidos en el ámbito de aplicación del presente Convenio, estarán distribuidas en su caso entre el Salario Base de Grupo y los Complementos del mismo.
+
+- Incrementos salariales para el año 2026: Incremento anual del 4% sobre las tablas salariales del 2025 y demás conceptos según se establece en el convenio. En el supuesto de que el IPC interanual de diciembre de 2026 fuese superior al 4% se producirá el incremento salarial correspondiente a esta diferencia en las tablas trascurrido tres meses desde la publicación de aquel por el Instituto Nacional de estadística con efecto retroactivo desde el 1 de enero de 2026.
+
+- Incremento salariales para el año 2027: Incremento anual del 3% sobre las tablas salariales del 2026 y demás conceptos según se establece en el convenio. En el supuesto de que el IPC interanual de diciembre de 2027 fuese superior al 3% se producirá el incremento salarial correspondiente a esta diferencia en las tablas trascurrido tres meses desde la publicación de aquel por el Instituto Nacional de estadística con efecto retroactivo desde el 1 de enero de 2027.
+
+- Incrementos salariales para el año 2028: Incremento anual del 3% sobre las tablas salariales del 2027 y demás conceptos según se establece en el convenio. En el supuesto de que el IPC interanual de diciembre de 2028 fuese superior al 3% se producirá el incremento salarial correspondiente a esta diferencia en las tablas trascurrido tres meses desde la publicación de aquel por el Instituto Nacional de estadística con efecto retroactivo desde el 1 de enero de 2028.
+
+- Incrementos salariales para el año 2029: Incremento anual del 3% sobre las tablas salariales del 2028 y demás conceptos según se establece en el convenio. En el supuesto de que el IPC interanual de diciembre de 2029 fuese superior al 3% se producirá el incremento salarial correspondiente a esta diferencia en las tablas trascurrido tres mes desde la publicación de aquel por el Instituto Nacional de estadística con efecto retroactivo desde el 1 de enero de 2029.
+
+- Incrementos salariales para el año 2030: Incremento anual del 3% sobre las tablas salariales del 2029 y demás conceptos según se establece en el convenio. En el supuesto de que el IPC interanual de diciembre de 2030 fuese superior al 3% se producirá el incremento salarial correspondiente a esta diferencia en las tablas trascurrido tres meses desde la publicación de aquel por el Instituto Nacional de estadística con efecto retroactivo desde el 1 de enero de 2030.
+
+Se entiende por salario base de grupo el correspondiente al trabajador en función de su pertenencia a uno de los grupos profesionales descritos en el presente Convenio Colectivo.
+El salario base remunera la jornada anual de trabajo efectivo pactada en este Convenio Colectivo y los períodos de descanso legalmente establecidos y será, para cada año y para categoría profesional, el que figura en la tabla salarial que, como anexo I, se adjunta al presente convenio colectivo formando parte integrante del mismo.
+
+Aquellos trabajadores que, a la entrada en vigor del presente Convenio, perciban en concepto de salario base cantidades superiores a las reconocidas en la Tabla Salarial a que se refiere el párrafo anterior, la diferencia en más, tendrá, a título exclusivamente personal, el carácter de complemento «ad personam», a que se refiere el art. 8º de este Convenio.`
+          },
+          {
+            num: "Artículo 21",
+            titulo: "Salario Base de Grupo",
+            texto: `Se entiende por salario base de grupo el correspondiente al trabajador en función de su pertenencia a uno de los grupos profesionales descritos en el presente Convenio Colectivo.
+
+El salario base remunera la jornada anual de trabajo efectivo pactada en este Convenio Colectivo y los períodos de descanso legalmente establecidos y será, para cada año y para categoría profesional, el que figura en la tabla salarial que, como Anexo I, se adjunta al presente convenio colectivo formando parte integrante del mismo.
+
+Aquellos trabajadores que, a la entrada en vigor del presente Convenio, perciban en concepto de salario base cantidades superiores a las reconocidas en la tabla salarial a que se refiere el párrafo anterior, la diferencia en más, tendrá, a título exclusivamente personal, el carácter de complemento «ad personam», a que se refiere el artículo 8.º de este Convenio.`
+          },
+          {
+            num: "Artículo 22",
+            titulo: "Complementos salariales",
+            texto: `Son complementos salariales las cantidades que, en su caso, deban adicionarse al Salario Base de Grupo por cualquier concepto distinto al de la jornada anual del trabajador y su adscripción a un grupo profesional.
+
+Los complementos salariales se ajustarán, principalmente, a alguna de las siguientes modalidades:
+A. Personales. En la medida en que deriven de las condiciones personales del trabajador.
+B. De puesto de trabajo. Integrados por las cantidades que deba percibir el trabajador por razón de las características del puesto de trabajo o de la forma de realizar su actividad.
+C. Por calidad o cantidad de trabajo. Consistente en las cantidades que percibe el trabajador por razón de una mejor calidad o mayor cantidad de trabajo, o bien en base a la situación y resultados de la empresa o un área de la misma.`
+          },
+          {
+            num: "Artículo 23",
+            titulo: "Productividad",
+            texto: `Las retribuciones pactadas en este Convenio Colectivo remuneran niveles normales de productividad, siendo deseo de ambas partes que la determinación de estos niveles se realice en el futuro por una comisión integrada por representantes de las mismas. En tanto no se fijen por dicha comisión los niveles normales de rendimiento para todo el sector, serán considerados como tales en cada empresa los rendimientos medios que vengan alcanzándose en la misma.`
+          },
+          {
+            num: "Artículo 24",
+            titulo: "Complemento personal de antigüedad",
+            texto: `Los trabajadores de plantilla, a la fecha de firma del convenio, percibirán durante el año 2026 como Complemento Personal de Antigüedad las siguientes cantidades:
+
+- A los 5 años: 41.40 € / mes (Total año: 620.94 €)
+- A los 10 años: 81.76 € / mes (Total año: 1,226.41 €)
+- A los 15 años: 156.29 € / mes (Total año: 2,344.41 €)
+- A los 20 años: 312.60 € / mes (Total año: 4,689.02 €)
+- A los 25 años: 390.72 € / mes (Total año: 5,860.75 €)
+- A los 30 años o Más: 483.10 € / mes (Total año: 7,246.54 €)
+
+Las anteriores cantidades se actualizarán de conformidad a lo estipulado en el art. 20.
+Los trabajadores que tengan una jornada reducida de 7 horas diarias percibirán las mismas retribuciones por antigüedad que los trabajadores con jornada completa, el resto de los trabajadores percibirán el complemento de antigüedad proporcional a la jornada de trabajo.`
+          },
+          {
+            num: "Artículo 25",
+            titulo: "Plus de nocturnidad",
+            texto: `Salvo que el salario del trabajo nocturno por su propia naturaleza se haya establecido atendiendo a esta circunstancia, o que se acuerde la compensación de este trabajo por descansos, el trabajador que preste servicio entre las diez de la noche y las seis de la mañana, incluso en régimen de turnos, percibirá, como complemento de puesto de trabajo, un plus de nocturnidad que se fija igual para todos los grupos profesionales, en las siguientes cantidades por horas nocturnas trabajadas:
+
+Año 2026: 2.32 € por hora nocturna trabajada.
+
+Las anteriores cantidades se actualizarán de conformidad a lo estipulado en el art. 20.`
+          },
+          {
+            num: "Artículo 26",
+            titulo: "Plus de transporte",
+            texto: `Todo el personal afectado por el presente convenio, en concepto de desplazamiento al Centro de Trabajo, tendrá derecho a percibir, por día efectivamente trabajado (incluyendo domingo y festivos en su caso), una compensación por transporte, tanto en las jornadas completas como en las jornadas parciales, que se fija igual para todos los grupos profesionales, en las siguientes cantidades:
+
+Año 2026: 7.26 € por día efectivamente trabajado.
+
+Las anteriores cantidades se actualizarán de conformidad a lo estipulado en el art. 20.`
+          },
+          {
+            num: "Artículo 27",
+            titulo: "Plus de trabajo penoso en cámaras refrigeradas y en cámaras frigoríficas de congelación",
+            texto: `1.- Plus de trabajo penoso en cámaras refrigeradas. Al personal que por habitual función, continua o discontinua, trabaje en cámaras refrigeradas, entendiendo por tales las naves aisladas y adaptadas térmicamente destinadas a la conservación por medio del frío de productos perecederos y cuya temperatura se encuentra entre 0º y 10º centígrados, percibirá un complemento de 41,16 euros mensuales para el año 2026, por el tiempo trabajado en dichas condiciones.
+El personal que no trabaje de manera habitual en dichas cámaras refrigeradas pero que de manera esporádica acceda a las mismas a realizar trabajos que le hubieren sido encomendados tendrá derecho a que se le abone dicho Plus en proporción al tiempo que hubiere permanecido trabajando en dichas cámaras.
+
+2.- Plus de trabajo penoso en cámaras frigoríficas de congelación. Al personal que por habitual función, continua o discontinua, y previamente designado trabaje en túneles o cámaras de congelación, soportando temperaturas de la banda de congelación de -18 grados C o inferiores, percibirá un complemento de 8.36 euros diarios para el año 2026, por el tiempo trabajado en dichas condiciones.
+
+En ningún caso el plus de penosidad en cámaras refrigeradas será compatible con el plus penoso en cámaras frigoríficas de congelación, aún cuando la empresa tenga doble actividad.
+En el supuesto de que en un mismo mes el trabajador preste sus servicios en cámaras refrigeradas y en cámaras frigoríficas de congelación, en las referidas condiciones de penosidad, se le abonará la parte proporcional de cada plus en función del tiempo trabajado en cada una de dichas condiciones.
+
+Las anteriores cantidades se actualizarán de conformidad a lo estipulado en el art. 20.`
+          },
+          {
+            num: "Artículo 28",
+            titulo: "Gratificaciones extraordinarias",
+            texto: `Los trabajadores afectados por el presente Convenio tendrán derecho a tres gratificaciones extraordinarias, que se llamarán de verano, navidad y primavera y se abonarán a razón de treinta días de salario base, más plus de antigüedad, si procede, fijado en el presente Convenio.
+
+El período de devengo de cada una de las tres pagas será anual y proporcional al tiempo de trabajo efectivo en la empresa, percibiéndose en su totalidad por un año de servicio en la misma.
+
+Dichas gratificaciones se abonarán:
+- Primavera: 30 de marzo.
+- Verano: 30 de junio.
+- Navidad: 15 de diciembre.
+
+No obstante lo anterior, la empresa y los representantes legales de los trabajadores, de común acuerdo, podrán acordar el prorrateo de las gratificaciones extraordinarias entre las doce mensualidades.`
+          },
+          {
+            num: "Artículo 29",
+            titulo: "Dietas",
+            texto: `Los trabajadores que por razones de prestación de servicio sean desplazados a lugares de trabajo situados en municipio diferente al que se ubique su centro de trabajo y que no tengan la condición de traslado del art. 40 del Estatuto de los Trabajadores, tendrán derecho a una indemnización por los gastos originados que recibirá el nombre de dietas.
+
+A los exclusivos efectos de su cuantía, se fijan para el año 2026 los siguientes tipos de dietas:
+- Almuerzo: 15.92 €
+- Cena: 15.92 €
+- Pernoctación y desayuno: 43.83 €
+- Media dieta: 22.56 €
+
+Todo trabajador que, por causa del servicio, se encuentre desplazado fuera del centro de trabajo, entre las 14.00 y 15.00 horas del día, percibirá los importes indicados como media dieta, no percibiendo, en este supuesto, la dieta por almuerzo.
+La dieta de cena se percibirá por el trabajador cuando este se encuentre desplazado de dicho centro de trabajo, por razón del servicio, entre las 20.00 y 22.00 horas.
+La dieta de pernoctación y desayuno será percibida por el trabajador cuanto éste se vea obligado, por razón del servicio, a pernoctar fuera del domicilio de la localidad en que se ubique su centro de trabajo.
+
+Las anteriores cantidades se actualizarán de conformidad a lo estipulado en el art. 20.`
+          }
         ]
       },
       {
-        capitulo: "Capítulo V. Tiempo de trabajo",
+        capitulo: "Capítulo V. Tiempo de Trabajo",
         articulos: [
-          { num: "Artículo 30", titulo: "Jornada máxima ordinaria", texto: "a) Jornada anual: 1.800 horas de trabajo efectivo (máx 9h, mín 7h diarias).\nb) Bocadillo: 20 minutos (trabajo efectivo en jornada continua >6h).\nc) Descanso: 2 días consecutivos semanales.\nd) Domingos: Plus 89.15 € (o compensación única de 181.10 €).\ne) Festivos: 89.15 € + 1 día descanso (o 181.10 € compensación única)." },
-          { num: "Artículo 31", titulo: "Horas extraordinarias", texto: "Valor hora extraordinaria 2026: 13.28 €." },
-          { num: "Artículo 32", titulo: "Vacaciones", texto: "30 días naturales retribuidos por año natural. Pueden fraccionarse en 20 y 10 días." },
-          { num: "Artículo 33", titulo: "Permisos retribuidos", texto: "a) Matrimonio/Pareja de hecho: 16 días.\nb) Enfermedad grave/hospitalización: 5 días.\nb bis) Fallecimiento: 3 días (5 con desplazamiento).\nc) Traslado domicilio: 1 día.\nh) Licencia personal: 3 días/año (no compensable).\ni) Médico de cabecera/acompañar menor <12 años: hasta 20h/año." }
+          {
+            num: "Artículo 30",
+            titulo: "Jornada máxima ordinaria",
+            texto: `a) Jornada máxima ordinaria.
+La jornada ordinaria anual se establece en 1.800 horas de trabajo efectivo. El cómputo de la jornada efectiva se hará en términos de 40 horas semanales y no podrá exceder de 9 horas ordinarias diarias de trabajo efectivo ni ser inferior a 7 horas. Los trabajadores deberán conocer con carácter general su jornada laboral quincenal con una antelación de quince días.
+En Semana Santa, Feria de Abril excepto el primer día de la Feria que podrá intercambiarse por el día 5 de enero, 24 y 31 de diciembre la jornada será de cinco horas, comenzando a las 8 de la mañana y concluyendo a las 13 horas, salvo cuando se trate de un centro de trabajo en el que su apertura se realice después de la publicación del presente convenio en cuyo caso la jornada será de cinco horas por turno. La diferencia de horas con respecto a la Jornada ordinaria anual será empleadas para impartir cursos de formación profesional a los trabajadores. Dichos cursos deberán ser realizados con anterioridad o posterioridad a su jornada de trabajo.
+
+No obstante lo anterior, la empresa, para atender sus necesidades empresariales, podrá solicitar a los trabajadores la prestación de trabajo en horario distinto al señalado de 8.00 a 13.00 horas que se realizará de modo voluntario; si el personal voluntario fuera insuficiente para prestar dicho servicio, la empresa podrá designar al personal necesario para cumplir dicha prestación, con la obligación de compensar la misma conforme a los pactos que la empresa hubiera establecido con los representantes de sus trabajadores.
+
+b) Tiempo de bocadillo.
+Los trabajadores en jornada continua superior a seis horas disfrutarán de 20 minutos diarios como máximo, para el tiempo del bocadillo. Dicho tiempo tiene la consideración, a todos los efectos, de trabajo efectivo. Los contratados a tiempo parcial disfrutarán del descanso de bocadillo proporcional a su jornada, pudiendo ampliar dicho tiempo hasta un máximo de 20 minutos no teniendo esa diferencia consideración de trabajo efectivo. En los centros de trabajo que tengan acordado un tiempo de bocadillo superior se respetarán dichos acuerdos.
+
+c) Descansos.
+El régimen de descanso será dos días consecutivos semanales. En cómputo cuatrisemanal al menos 2 de dichos días de descanso, deberán coincidir en domingo.
+Se garantizará en cualquier caso el descanso mínimo entre jornadas de 12 horas.
+
+d) Trabajo en domingos.
+Cuando el personal afectado por este convenio tuviese que trabajar en domingo la empresa abonará, a cada persona que acuda a trabajar, un plus de 89.15 € (para 2026).
+Si previa solicitud de la empresa y de modo voluntario, el personal afectado por este convenio tuviese que trabajar un domingo que además fuere uno de los días de descanso semanal la empresa, a elección del trabajador, abonará 89.15 € y además concederá otro día de descanso, o bien un plus como compensación única de 181.10 €.
+
+e) Trabajo en días festivos.
+El trabajo en días festivos se realizará mediante personal voluntario. Caso de que el personal voluntario fuera insuficiente, la empresa designará al personal para atender sus necesidades. El trabajo en festivos se compensará pagando 89.15 € por festivo y otro día de descanso, o bien un plus de compensación única por festivo de 181.10 €.`
+          },
+          {
+            num: "Artículo 31",
+            titulo: "Horas extraordinarias",
+            texto: `Con la finalidad de favorecer la creación de puestos de trabajo se procurará reducir al mínimo indispensable las horas extraordinarias, si bien, dadas las especiales características de esta actividad, los trabajadores, con carácter voluntario, podrán realizar las estrictamente necesarias por pedidos o periodos punta de producción, ausencias imprevistas, cambios de turno u otras circunstancias de carácter estructural...
+
+Las horas de trabajo efectivo que rebasen las cuarenta horas semanales, tendrán la naturaleza de horas extraordinarias y podrán compensarse tanto en metálico, como en tiempo de descanso, conforme al acuerdo adoptado entre las partes. En el supuesto optar por la compensación en metálico las horas extraordinarias tendrán el valor para 2026 de 13.28 €.`
+          },
+          {
+            num: "Artículo 32",
+            titulo: "Vacaciones",
+            texto: `Los trabajadores afectados por el presente Convenio disfrutarán por años naturales de un periodo de vacaciones de 30 días naturales retribuidos o la parte proporcional correspondiente en el supuesto de que no lleve un año al servicio de la empresa, a razón de Salario Base más Plus de Antigüedad, si procede fijado en el presente convenio, complemento personal en su caso, plus de refrigerado y congelado, plus de transporte, y demás pluses si existiesen según el promedio de las cantidades percibidas en los seis meses inmediatamente anteriores.
+
+Podrán partirse en dos periodos de 20 y 10 días respectivamente, salvo acuerdo entre la empresa y los representantes legales de los trabajadores que establezca otro modo de distribución de las vacaciones.
+
+Las vacaciones se disfrutarán en la época que, de común acuerdo, fijen el empresario y los trabajadores o sus representantes de los trabajadores, donde los haya. Caso de no llegarse a un acuerdo respecto a las fechas, los trabajadores, de forma rotativa, podrán elegir 20 días naturales para disfrutar entre el 15 de junio y el 15 de septiembre siendo los restantes 10 días disfrutados en la fecha que la empresa determine a su elección. En tal supuesto la empresa deberá comunicará al trabajador, con 2 meses de antelación, la fecha concreta en que disfrutará las vacaciones.
+
+El trabajador, antes del 28 de febrero de cada año, concretará a la empresa la fecha concreta en que desea comenzar a disfrutar sus vacaciones dentro del período del 15 de junio al 15 de septiembre, y la empresa, antes del 1 de abril de cada año, determinará la fecha de su concesión...`
+          },
+          {
+            num: "Artículo 33",
+            titulo: "Permisos retribuidos",
+            texto: `El trabajador, previo aviso y justificación, podrá ausentarse del trabajo con derecho a percibir el salario base más el complemento personal de antigüedad y el plus de transporte, por los motivos y el tiempo siguiente:
+
+a) Dieciséis días naturales en caso de matrimonio o registro de pareja de hecho.
+b) Cinco días por accidente o enfermedad graves, hospitalización o intervención quirúrgica sin hospitalización que precise reposo domiciliario del cónyuge, pareja de hecho o parientes hasta el segundo grado por consanguinidad o afinidad, incluido el familiar consanguíneo de la pareja de hecho, así como de cualquier otra persona distinta de las anteriores, que conviva con la persona trabajadora en el mismo domicilio y que requiera el cuidado efectivo de aquella.
+b bis) Tres días por fallecimiento del cónyuge, pareja de hecho o parientes hasta el segundo grado de consanguinidad o afinidad. Cuando con tal motivo la persona trabajadora necesite hacer un desplazamiento al efecto, el plazo se ampliará en dos días.
+c) Un día por traslado del domicilio habitual.
+d) Por el tiempo indispensable, para el cumplimiento de un deber inexcusable de carácter público y personal, comprendido el ejercicio del sufragio activo.
+e) Para realizar funciones sindicales o de representación del personal en los términos establecidos legal o convencionalmente.
+f) Por el tiempo indispensable para la realización de exámenes prenatales y técnicas de preparación al parto...
+g) Hasta cuatro días por imposibilidad de acceder al centro de trabajo o transitar por las vías de circulación necesarias para acudir al mismo, como consecuencia de las recomendaciones, limitaciones o prohibiciones al desplazamiento establecidas por las autoridades competentes, así como cuando concurra una situación de riesgo grave e inminente, incluidas las derivadas de una catástrofe o fenómeno meteorológico adverso.
+g) (sic) Por el tiempo indispensable para la realización de los actos preparatorios de la donación de órganos o tejidos siempre que deban tener lugar dentro de la jornada de trabajo.
+h) 3 días al año de licencia personal, que no será compensable ni recuperable. El referido permiso que no requerirá justificación, estará supeditado a que en su disfrute no exista coincidencia con otras ausencias de trabajadores que, en su conjunto, superen en un 20 por ciento al personal del mismo nivel, grupo profesional y turno de trabajo. Los trabajadores podrán disfrutar de los días licencia personal por jornada completa o fracciones de 2 horas.
+i) Permiso retribuido de hasta 20h al año para acudir al médico de cabecera o acompañar a hijo/a menor a su cargo de hasta 12 años.`
+          }
         ]
       },
       {
-        capitulo: "Capítulo VI. Disposiciones varias y Salud Laboral",
+        capitulo: "Capítulo VI. Disposiciones Varias y Salud Laboral",
         articulos: [
-          { num: "Artículo 34", titulo: "Vestuario", texto: "Dos uniformes al año (invierno y verano). Ropa especial para cámaras frigoríficas." },
-          { num: "Artículo 35", titulo: "Jubilación parcial", texto: "A los 62 años, reducción de jornada entre el 75% y 85%." },
-          { num: "Artículo 36", titulo: "Excedencia", texto: "Voluntaria entre 4 meses y 5 años (mínimo 1 año de antigüedad)." },
-          { num: "Artículo 37", titulo: "Ayudas hijos discapacitados", texto: "Importe 2026: 66.41 € / mes por hijo (minusvalía >= 33%)." },
-          { num: "Artículo 38", titulo: "Ayudas enseñanza obligatoria", texto: "85.21 € / año por hijo hasta los 16 años (pago único en septiembre)." },
-          { num: "Artículo 38 bis", titulo: "Plus de convenio", texto: "2026: 80 €/mes (12 pagas). 2027-2029: 100 €/mes. 2030: 104 €/mes." },
-          { num: "Artículo 39", titulo: "Régimen disciplinario", texto: "Remisión al II Acuerdo General de Transporte de Mercancías." },
-          { num: "Artículo 40", titulo: "Igualdad de oportunidades", texto: "Planes de igualdad en empresas de más de 250 trabajadores." },
-          { num: "Artículo 41", titulo: "Acoso moral o mobbing", texto: "Entorno laboral libre de conductas hostiles. Falta grave." },
-          { num: "Artículo 42", titulo: "Movilidad geográfica. Traslados", texto: "Compensación de gastos de viaje y 4 mensualidades del salario base." },
-          { num: "Artículo 43", titulo: "Seguro de accidente", texto: "2026: Muerte o IPT: 44.554 €. IPA o Gran Invalidez: 33.415 €." },
-          { num: "Artículo 44", titulo: "Incapacidad transitoria", texto: "Enfermedad común: 1ª y 2ª baja al 60% (días 1-15) y 75% (día 16+). Accidente laboral: 100% desde el día 1." },
-          { num: "Artículo 45", titulo: "Reconocimiento médico", texto: "Dentro de la jornada o compensado con tiempo de descanso." }
+          {
+            num: "Artículo 34",
+            titulo: "Vestuario",
+            texto: `Las empresas facilitarán a su personal de Operaciones, con obligación por parte de éste de utilizarlo en el trabajo, dos uniformes al año, uno de invierno y otro de verano.
+
+Invierno: Dos camisas (manga larga). Dos pantalones. 1 Chaqueta o jersey. 1 Anorak. Unos zapatos o botas de seguridad. 
+Verano: Dos camisas (manga corta). Dos pantalones. Unos zapatos de seguridad.
+
+Anualmente se renovará 1 pantalón y 1 camisa de cada uno de los uniformes; y cada dos años se renovarán la chaqueta o jersey, el Anorak y los zapatos de seguridad.
+
+Para el personal de Operaciones que efectúe trabajos en Cámaras Frigoríficas la empresa les proveerán del siguiente vestuario de uso obligatorio durante la jornada laboral: Un equipo completo de chaqueta y pantalón o buzo completo isotérmico para resistir temperaturas iguales o inferiores a los -18 grados centígrados, botas de media caña o zapatos especiales para el frío, ropa interior, un pasamontañas, un jersey de cuello alto y calcetines de lana y guantes impermeables. La duración de estas prendas será de un año...`
+          },
+          {
+            num: "Artículo 35",
+            titulo: "Jubilación parcial",
+            texto: `Los trabajadores siempre que reúnan las condiciones exigidas para tener derecho a la pensión de jubilación parcial de la Seguridad Social, podrán, al cumplir 62 años acordar con la empresa reducir su jornada de trabajo y su salario en el porcentaje del 75% y compatibilizar dicha situación con la pensión que la Seguridad Social les Reconozca hasta cumplir la edad de jubilación... De igual modo podrán acordar un porcentaje del 85% de reducción de la jornada cuando se contrate simultáneamente al relevista por tiempo indefinido.`
+          },
+          {
+            num: "Artículo 36",
+            titulo: "Excedencia",
+            texto: `El trabajador con al menos una antigüedad en la empresa de un año tiene derecho a que se le reconozca la posibilidad de situarse en excedencia voluntaria por un plazo no menor a cuatro meses y no mayor a cinco años. Este derecho sólo podrá ser ejercitado otra vez por el mismo trabajador si han transcurrido cuatro años desde el final de la anterior excedencia.`
+          },
+          {
+            num: "Artículo 37",
+            titulo: "Ayudas a trabajadores con hijos discapacitados",
+            texto: `Los trabajadores con hijos discapacitados o disminuidos físicos o psíquicos con una minusvalía igual o superior al 33% percibirán una ayuda económica mensual de 66,41 € para 2026, siempre que estén acreditados por el INSS.`
+          },
+          {
+            num: "Artículo 38",
+            titulo: "Ayudas a trabajadores con hijos que cursen enseñanza obligatoria",
+            texto: `Las empresas abonarán a cada hijo que tenga, hasta que cumpla los dieciséis años de edad y que estén cursando algún tipo de enseñanza oficial obligatoria una ayuda escolar de 85,21 € para el año 2026. Dicha ayuda se abonará en una sola vez en el mes de septiembre cada año.`
+          },
+          {
+            num: "Artículo 38 bis",
+            titulo: "Plus de convenio",
+            texto: `Se crea un nuevo concepto salarial denominado plus convenio con vigencia desde enero de 2026 por importe de 80€ brutos mensuales (para jornada completa) en 12 pagas al año. Para las personas trabajadoras con jornada parcial, será proporcional al número de horas de trabajo. Para 2027 este plus se incrementa hasta los 100 € brutos mensuales en 12 pagas al año y en los términos anteriormente señalados. Para 2028 y 2029 el plus de convenio se mantiene en 100 € brutos mensuales en 12 pagas. En 2030 el plus de convenio se incrementa hasta los 104 € brutos mensuales en 12 pagas en los términos señalados.`
+          },
+          {
+            num: "Artículo 39",
+            titulo: "Régimen disciplinario",
+            texto: `En materia de régimen disciplinario, las partes se remiten a lo dispuesto en el capítulo VII, arts. 41 a 49, ambos inclusive, del II Acuerdo General de Empresas de Transporte de Mercancías, publicado en el B.O.E. de 29 de marzo de 2012.`
+          },
+          {
+            num: "Artículo 40",
+            titulo: "Igualdad de oportunidades",
+            texto: `Es obligación de las empresas respetar el principio de igualdad de trato y de oportunidades en el ámbito laboral y, con esta finalidad, deberán adoptar medidas dirigidas a evitar cualquier tipo de discriminación laboral entre mujeres y hombres... En el caso de las empresas de más de 250 trabajadores, las medidas de igualdad deberán dirigirse a la elaboración y aplicación de un plan de igualdad.`
+          },
+          {
+            num: "Artículo 41",
+            titulo: "Acoso moral o mobbing",
+            texto: `Todos los trabajadores tienen derecho a un entorno laboral libre de conductas y comportamientos hostiles o intimidatorios hacia su persona... Se entiende por acoso moral (mobbing), el hecho de que una persona o más sometan a otra, a una violencia psicológica por sistema durante un período de tiempo más o menos prolongado, ocasionándole daños en su salud. Tal hecho será considerado como de falta grave.`
+          },
+          {
+            num: "Artículo 42",
+            titulo: "Movilidad geográfica. Traslados",
+            texto: `La empresa podrá acordar el traslado de sus trabajadores, que exija cambio de residencia, en las condiciones y con los requisitos legalmente exigidos... En los supuestos contemplados, la empresa habrá de abonar los gastos de viaje del interesado y de las personas que con él convivan y transportarle su mobiliario y enseres... y además pagarle como mínimo, en concepto de compensación, el importe de cuatro mensualidades del sueldo o salario base.`
+          },
+          {
+            num: "Artículo 43",
+            titulo: "Seguro de accidente",
+            texto: `Las empresas incluidas en el ámbito de aplicación de este convenio colectivo se obligan a formalizar un seguro colectivo de accidente de trabajo... que asegure el pago para 2026 de 44.554 euros en caso de muerte o de incapacidad permanente total para la profesión habitual que comporte la baja en la empresa, y de 33.415 euros en caso de incapacidad permanente absoluta o gran invalidez.`
+          },
+          {
+            num: "Artículo 44",
+            titulo: "Incapacidad transitoria",
+            texto: `En los supuestos de baja por incapacidad temporal (I.T.), por enfermedad los trabajadores percibirán los siguientes complementos sobre la prestación de la Seguridad Social:
+
+Por la primera y segunda vez que, durante el año, el trabajador cause baja por enfermedad común la empresa complementará la prestación de la seguridad social hasta alcanzar el 60% de la base reguladora del mes anterior desde el día de la baja hasta el decimoquinto día. A partir del decimosexto día la empresa complementará hasta alcanzar el 75%.
+
+A partir de la tercera vez que, durante el año, el trabajador cause baja por enfermedad, no le será de aplicación lo establecido en el párrafo anterior.
+
+Los trabajadores que se encuentren en incapacidad laboral transitoria derivada de accidente laboral la empresa complementará la prestación de la seguridad social hasta alcanzar el 100% de la base reguladora desde el primer día.`
+          },
+          {
+            num: "Artículo 45",
+            titulo: "Reconocimiento médico",
+            texto: `Aquel trabajador que quiera someterse al reconocimiento médico deberá hacerlo como regla general dentro de su jornada de trabajo. Si no fuese posible, el tiempo dedicado fuera de la jornada laboral deberá ser compensado con tiempo de descanso, descontando así el tiempo invertido.`
+          }
         ]
       },
       {
         capitulo: "Capítulo VII y VIII. Derechos Sindicales y Comisión Paritaria",
         articulos: [
-          { num: "Artículo 46-47", titulo: "Derechos sindicales y Garantías", texto: "Crédito de 28 horas mensuales retribuidas acumulables trimestralmente." },
-          { num: "Artículo 48-50", titulo: "Comisión Paritaria y Procedimiento", texto: "Órgano de interpretación y arbitraje. Domicilio: UGT Sevilla." },
-          { num: "Artículo 51", titulo: "Protocolo LGTBIQ+", texto: "Protocolo de actuación contra la violencia y acoso por orientación sexual o identidad de género conforme a Ley 4/2023." }
+          {
+            num: "Artículo 46-47",
+            titulo: "Derechos sindicales y Garantías",
+            texto: `Las empresas respetarán el derecho de todos los trabajadores a sindicarse libremente. Los Delegados o miembros de los Comités de Empresa gozarán de las garantías del Estatuto de los Trabajadores y dispondrán de un crédito de 28 horas mensuales retribuidas durante el año, acumulables trimestralmente.`
+          },
+          {
+            num: "Artículo 48-50",
+            titulo: "Comisión Paritaria y Procedimiento",
+            texto: `Se crea una Comisión Paritaria para interpretar y aplicar las materias reguladas en el convenio, así como para mediación y arbitraje. Estará compuesta por 4 representantes empresariales y 4 sindicales (2 UGT, 2 CCOO). Domicilio: UGT Sevilla (C/ Blas Infante 4).`
+          },
+          {
+            num: "Artículo 51",
+            titulo: "Protocolo LGTBIQ+",
+            texto: `Protocolo de Actuación para la Atención del acoso o la violencia contra las personas LGTBIQ+, regulando definiciones, garantías de confidencialidad y procedimiento formal de denuncia e investigación conforme a la Ley 4/2023.`
+          }
         ]
       },
       {
         capitulo: "Tablas Salariales y Disposiciones",
         articulos: [
-          { num: "Disposiciones", titulo: "Disposiciones Adicionales", texto: "Disposición Adicional Cuarta: Cursos CAP a cargo de la empresa dentro de la jornada laboral." },
-          { num: "Tablas 2026", titulo: "Tablas Salariales Provisionales 2026 (+4%)", texto: `
+          {
+            num: "Disposiciones",
+            titulo: "Disposiciones Adicionales",
+            texto: `Disposición Adicional Cuarta (CAP): La empresa deberá facilitar la formación y renovación de los conductores/as que obligatoriamente deben obtener el CAP (R.D. 1032/2007), considerándose dicha formación como jornada laboral y a cargo de la empresa.`
+          },
+          {
+            num: "Tablas 2026",
+            titulo: "Tablas Salariales Provisionales 2026 (Incremento 4%)",
+            texto: `
             <table>
-              <tr><th>Categoría</th><th>Grupo / Nivel</th><th>Total Mes</th><th>Total Año</th></tr>
-              <tr><td>Jefe de Servicios</td><td>Mandos IV</td><td>1.490,43 €</td><td>22.356,49 €</td></tr>
-              <tr><td>Encargado de Almacén</td><td>Mandos I</td><td>1.235,79 €</td><td>18.536,82 €</td></tr>
-              <tr><td>Oficial 1ª Administrativo</td><td>Admin III</td><td>1.257,85 €</td><td>18.867,69 €</td></tr>
-              <tr><td>Jefe de Equipo</td><td>Operaciones III</td><td>1.231,58 €</td><td>18.473,75 €</td></tr>
-              <tr><td>Mozo Especializado</td><td>Operaciones II</td><td>1.192,16 €</td><td>17.882,47 €</td></tr>
-              <tr><td>Mozo Ordinario</td><td>Operaciones I</td><td>1.170,22 €</td><td>17.553,30 €</td></tr>
-              <tr><td>Mozo Inserción</td><td>Operaciones II</td><td>1.087,34 €</td><td>16.310,11 €</td></tr>
+              <thead>
+                <tr>
+                  <th>Categoría</th>
+                  <th>Grupo</th>
+                  <th>Nivel</th>
+                  <th>Total Mes</th>
+                  <th>Total Año</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Jefe de Servicios</td><td>Mandos</td><td>IV</td><td>1.490,43 €</td><td>22.356,49 €</td></tr>
+                <tr><td>Jefe de Sección</td><td>Mandos</td><td>III</td><td>1.361,41 €</td><td>20.421,09 €</td></tr>
+                <tr><td>Encargado general/Jefe Tráfico</td><td>Mandos</td><td>II</td><td>1.307,81 €</td><td>19.617,12 €</td></tr>
+                <tr><td>Encargado de Almacén</td><td>Mandos</td><td>I</td><td>1.235,79 €</td><td>18.536,82 €</td></tr>
+                <tr><td>Ayudante de Ingenieros</td><td>Técnicos</td><td>III</td><td>1.325,94 €</td><td>19.889,08 €</td></tr>
+                <tr><td>Jefe de Negociado</td><td>Técnicos</td><td>II</td><td>1.320,79 €</td><td>19.811,81 €</td></tr>
+                <tr><td>Oficial 1ª Administrativo</td><td>Admin</td><td>II</td><td>1.257,85 €</td><td>18.867,69 €</td></tr>
+                <tr><td>Oficial 2ª Administrativo</td><td>Admin</td><td>I</td><td>1.228,43 €</td><td>18.426,40 €</td></tr>
+                <tr><td>Auxiliar Administrativo</td><td>Admin</td><td>-</td><td>1.170,01 €</td><td>17.550,08 €</td></tr>
+                <tr><td>Jefe de Equipo</td><td>Operaciones</td><td>III</td><td>1.231,58 €</td><td>18.473,75 €</td></tr>
+                <tr><td>Mozo Especializado</td><td>Operaciones</td><td>II</td><td>1.192,16 €</td><td>17.882,47 €</td></tr>
+                <tr><td>Mozo Ordinario</td><td>Operaciones</td><td>I</td><td>1.170,22 €</td><td>17.553,30 €</td></tr>
+                <tr><td>Conductor</td><td>Técnicos</td><td>-</td><td>1.260,22 €</td><td>18.903,29 €</td></tr>
+                <tr><td>Mozo Inserción</td><td>Operaciones</td><td>II</td><td>1.087,34 €</td><td>16.310,11 €</td></tr>
+                <tr><td>Oficial Mantenimiento</td><td>Técnicos</td><td>-</td><td>1.221,76 €</td><td>18.326,46 €</td></tr>
+              </tbody>
             </table>
-          ` }
+            `
+          }
         ]
       }
     ];
@@ -228,13 +727,15 @@
 
         if (searchQuery) {
           const regex = new RegExp(`(${searchQuery})`, 'gi');
-          textHighlighted = textHighlighted.replace(regex, '<mark>$1</mark>');
+          if (!textHighlighted.includes('<table')) {
+            textHighlighted = textHighlighted.replace(regex, '<mark>$1</mark>');
+          }
           titleHighlighted = titleHighlighted.replace(regex, '<mark>$1</mark>');
         }
 
         card.innerHTML = `
           <h2>${titleHighlighted}</h2>
-          <pre>${textHighlighted}</pre>
+          <div class="article-content">${textHighlighted}</div>
         `;
         contentArea.appendChild(card);
       });
