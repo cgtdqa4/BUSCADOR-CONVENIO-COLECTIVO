@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Normativa Laboral - CGT AMAZON</title>
+    <title>Convenio Operadores Logísticos Sevilla - CGT AMAZON</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -49,7 +49,7 @@
                     <h1 class="text-xl font-black tracking-wider leading-none text-white flex items-center gap-2">
                         CGT <span class="text-black bg-white px-1.5 py-0.5 rounded text-base font-bold">AMAZON</span>
                     </h1>
-                    <p class="text-xs text-red-100 mt-1 font-medium">Normativa Laboral: Estatuto y Convenio</p>
+                    <p class="text-xs text-red-100 mt-1 font-medium">Normativa laboral: Convenio Operadores Logísticos Provincia de Sevilla</p>
                 </div>
             </div>
             
@@ -102,7 +102,6 @@
         let fullData = [];
         let fontSize = 14;
 
-        // Normaliza las distintas claves (estatuto vs convenio) para tratarlas igual
         function normalizeData(estatutoRaw, convenioRaw) {
             const normalizedEstatuto = (estatutoRaw || []).map(sec => ({
                 id: sec.id,
@@ -141,7 +140,6 @@
                 console.warn('No se pudo cargar estatuto.json:', e);
             }
 
-            // Detecta la variable global 'conveniodata' (o 'convenioData') de tu script
             const rawConvenio = (typeof conveniodata !== 'undefined') ? conveniodata : 
                                (typeof convenioData !== 'undefined') ? convenioData : [];
 
@@ -169,7 +167,6 @@
                 if (section.articles) {
                     section.articles.forEach(art => {
                         const link = document.createElement('a');
-                        // Sanitiza el ID del enlace (por si num viene como "Artículo 1")
                         const safeId = String(art.num).replace(/\s+/g, '_');
                         link.href = `#art_${safeId}`;
                         link.className = 'block px-2 py-1 rounded hover:bg-black hover:text-red-400 transition-colors text-xs text-neutral-300 truncate';
