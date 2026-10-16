@@ -21,9 +21,9 @@
     </script>
     <style>
         body { background-color: #121212; color: #E0E0E0; }
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #1E1E1E; }
-        ::-webkit-scrollbar-thumb { background: #D32F2F; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #D32F2F; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #B71C1C; }
         .mark-highlight { background-color: #D32F2F; color: white; padding: 0 2px; border-radius: 2px; }
     </style>
@@ -31,14 +31,14 @@
     <!-- Carga de tu archivo del convenio -->
     <script src="./convenio-datos.js"></script>
 </head>
-<body class="font-sans antialiased flex flex-col h-screen">
+<body class="font-sans antialiased flex flex-col h-screen overflow-hidden">
 
     <!-- Header CGT AMAZON -->
-    <header class="bg-cgtRed text-white shadow-lg flex-none border-b-2 border-red-800">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-black text-white font-black p-1.5 rounded-lg border border-red-500 shadow-md flex items-center justify-center">
-                    <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 100 100">
+    <header class="bg-cgtRed text-white shadow-lg flex-none border-b-2 border-red-800 z-10">
+        <div class="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 flex justify-between items-center">
+            <div class="flex items-center space-x-2.5">
+                <div class="bg-black text-white font-black p-1 rounded-lg border border-red-500 shadow-md flex items-center justify-center">
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white fill-current" viewBox="0 0 100 100">
                         <polygon points="0,0 100,0 0,100" fill="#D32F2F" />
                         <polygon points="100,0 100,100 0,100" fill="#000000" />
                         <text x="50" y="65" font-family="sans-serif" font-weight="900" font-size="36" fill="#FFFFFF" text-anchor="middle">CGT</text>
@@ -46,10 +46,10 @@
                 </div>
 
                 <div>
-                    <h1 class="text-xl font-black tracking-wider leading-none text-white flex items-center gap-2">
-                        CGT <span class="text-black bg-white px-1.5 py-0.5 rounded text-base font-bold">AMAZON</span>
+                    <h1 class="text-lg sm:text-xl font-black tracking-wider leading-none text-white flex items-center gap-1.5">
+                        CGT <span class="text-black bg-white px-1 py-0.2 rounded text-sm sm:text-base font-bold">AMAZON</span>
                     </h1>
-                    <p class="text-xs text-red-100 mt-1 font-medium">Normativa laboral: Convenio Operadores Logísticos Provincia de Sevilla 2026 - 2030</p>
+                    <p class="text-[10px] sm:text-xs text-red-100 mt-0.5 font-medium line-clamp-1">Convenio Operadores Logísticos Sevilla 2026-2030</p>
                 </div>
             </div>
             
@@ -62,18 +62,18 @@
     </header>
 
     <!-- Content Grid -->
-    <div class="flex-1 flex flex-col md:flex-row overflow-hidden max-w-7xl w-full mx-auto p-2 sm:p-4 gap-4">
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden max-w-7xl w-full mx-auto p-2 sm:p-4 gap-3">
         
-        <!-- Sidebar -->
-        <aside class="w-full md:w-80 bg-cgtGray rounded-lg p-4 flex flex-col border border-neutral-800 flex-none md:flex-initial">
-            <div class="mb-4">
-                <label for="searchInput" class="block text-xs font-semibold text-red-400 uppercase tracking-wider mb-2">Buscador global</label>
+        <!-- Sidebar / Buscador e Índice -->
+        <aside class="w-full md:w-80 bg-cgtGray rounded-lg p-3 sm:p-4 flex flex-col border border-neutral-800 flex-none md:max-h-full max-h-[40vh] md:h-auto">
+            <div class="mb-3 flex-none">
+                <label for="searchInput" class="block text-xs font-semibold text-red-400 uppercase tracking-wider mb-1.5">Buscador global</label>
                 <div class="relative">
-                    <input type="text" id="searchInput" placeholder="Buscar concepto o artículo..." 
-                        class="w-full bg-black text-white border border-neutral-700 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-cgtRed">
-                    <button id="clearSearch" class="absolute right-2 top-2 text-neutral-400 hover:text-white hidden">✕</button>
+                    <input type="text" id="searchInput" placeholder="Escribe concepto o artículo..." 
+                        class="w-full bg-black text-white border border-neutral-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cgtRed pr-8">
+                    <button id="clearSearch" class="absolute right-2.5 top-2.5 text-neutral-400 hover:text-white hidden text-sm font-bold">✕</button>
                 </div>
-                <div id="searchResultsCount" class="text-xs text-neutral-400 mt-1 h-4"></div>
+                <div id="searchResultsCount" class="text-[11px] text-neutral-400 mt-1 h-4 font-medium"></div>
             </div>
 
             <div class="flex-1 overflow-y-auto pr-1">
@@ -82,25 +82,31 @@
             </div>
         </aside>
 
-        <!-- Visor -->
-        <main class="flex-1 bg-cgtGray rounded-lg p-4 sm:p-6 flex flex-col border border-neutral-800 overflow-hidden">
-            <div class="flex justify-between items-center border-b border-neutral-700 pb-3 mb-4">
-                <h2 id="currentSectionTitle" class="text-lg font-bold text-red-500 truncate">Texto Normativo</h2>
-                <div class="flex space-x-2">
-                    <button id="btnFontDown" class="bg-black hover:bg-neutral-800 px-3 py-1 rounded text-xs border border-neutral-700 font-bold">A-</button>
-                    <button id="btnFontUp" class="bg-black hover:bg-neutral-800 px-3 py-1 rounded text-xs border border-neutral-700 font-bold">A+</button>
+        <!-- Visor de Artículos -->
+        <main class="flex-1 bg-cgtGray rounded-lg p-3 sm:p-6 flex flex-col border border-neutral-800 overflow-hidden">
+            <div class="flex justify-between items-center border-b border-neutral-700 pb-2.5 mb-3 flex-none">
+                <h2 id="currentSectionTitle" class="text-sm sm:text-lg font-bold text-red-500 truncate mr-2">Texto Normativo</h2>
+                <div class="flex space-x-1.5 flex-none">
+                    <button id="btnFontDown" class="bg-black hover:bg-neutral-800 px-2.5 py-1 rounded text-xs border border-neutral-700 font-bold text-neutral-200">A-</button>
+                    <button id="btnFontUp" class="bg-black hover:bg-neutral-800 px-2.5 py-1 rounded text-xs border border-neutral-700 font-bold text-neutral-200">A+</button>
                 </div>
             </div>
 
-            <div id="contentViewer" class="flex-1 overflow-y-auto pr-2 text-sm leading-relaxed space-y-6 text-neutral-300">
+            <div id="contentViewer" class="flex-1 overflow-y-auto pr-2 text-sm leading-relaxed space-y-4 text-neutral-300">
                 <p id="loadingText" class="text-neutral-500 italic">Cargando base de datos...</p>
             </div>
         </main>
     </div>
 
+    <!-- Script de Funcionalidad -->
     <script>
         let fullData = [];
         let fontSize = 14;
+
+        // Función para limpiar tildes y normalizar texto (búsqueda avanzada flexible)
+        function removeAccents(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        }
 
         function normalizeData(estatutoRaw, convenioRaw) {
             const normalizedEstatuto = (estatutoRaw || []).map(sec => ({
@@ -141,7 +147,7 @@
             }
 
             const rawConvenio = (typeof conveniodata !== 'undefined') ? conveniodata : 
-                               (typeof convenioData !== 'undefined') ? convenioData : [];
+                                   (typeof convenioData !== 'undefined') ? convenioData : [];
 
             fullData = normalizeData(estatutoData, rawConvenio);
 
@@ -150,7 +156,7 @@
                 renderContent(fullData);
             } else {
                 document.getElementById('contentViewer').innerHTML = 
-                    `<p class="text-red-500">No se encontraron datos normativos en estatuto.json ni en convenio-datos.js</p>`;
+                    `<p class="text-red-500 p-4">No se encontraron datos normativos en estatuto.json ni en convenio-datos.js</p>`;
             }
         }
 
@@ -160,7 +166,7 @@
 
             data.forEach(section => {
                 const secHeader = document.createElement('div');
-                secHeader.className = 'font-bold text-red-400 mt-4 mb-1 text-xs uppercase tracking-wide border-b border-red-900/40 pb-1';
+                secHeader.className = 'font-bold text-red-400 mt-3 mb-1 text-[11px] uppercase tracking-wide border-b border-red-900/40 pb-1';
                 secHeader.textContent = section.title;
                 nav.appendChild(secHeader);
 
@@ -169,10 +175,23 @@
                         const link = document.createElement('a');
                         const safeId = String(art.num).replace(/\s+/g, '_');
                         link.href = `#art_${safeId}`;
-                        link.className = 'block px-2 py-1 rounded hover:bg-black hover:text-red-400 transition-colors text-xs text-neutral-300 truncate';
+                        link.className = 'block px-2 py-1.5 rounded hover:bg-black hover:text-red-400 transition-colors text-xs text-neutral-300 truncate';
                         
                         const artNumText = String(art.num).toLowerCase().includes('art') ? art.num : `Art. ${art.num}`;
                         link.textContent = art.title ? `${artNumText} - ${art.title}` : artNumText;
+                        
+                        // Evento para navegar con scroll suave y cerrar teclado en móvil si fuera necesario
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const target = document.getElementById(`art_${safeId}`);
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                // Destacar temporalmente el artículo seleccionado
+                                target.classList.add('border-red-500');
+                                setTimeout(() => target.classList.remove('border-red-500'), 1500);
+                            }
+                        });
+
                         nav.appendChild(link);
                     });
                 }
@@ -183,9 +202,14 @@
             const viewer = document.getElementById('contentViewer');
             viewer.innerHTML = '';
 
+            if (data.length === 0) {
+                viewer.innerHTML = `<div class="text-center py-10 text-neutral-500">No se encontraron artículos con ese criterio de búsqueda.</div>`;
+                return;
+            }
+
             data.forEach(section => {
                 const secTitle = document.createElement('h3');
-                secTitle.className = 'text-md font-bold text-red-500 border-b border-red-900/50 pb-1 mt-6';
+                secTitle.className = 'text-xs sm:text-sm font-bold text-red-500 border-b border-red-900/50 pb-1 mt-5 uppercase tracking-wide';
                 secTitle.textContent = section.title;
                 viewer.appendChild(secTitle);
 
@@ -194,24 +218,31 @@
                         const artBox = document.createElement('div');
                         const safeId = String(art.num).replace(/\s+/g, '_');
                         artBox.id = `art_${safeId}`;
-                        artBox.className = 'bg-black/40 p-4 rounded-lg border border-neutral-800 hover:border-neutral-700 transition-colors space-y-2 mt-3';
+                        artBox.className = 'bg-black/55 p-3.5 sm:p-4 rounded-lg border border-neutral-800 transition-all space-y-2 mt-2.5';
 
                         const artNumText = String(art.num).toLowerCase().includes('art') ? art.num : `Artículo ${art.num}`;
                         let titleText = art.title ? `${artNumText}. ${art.title}` : artNumText;
                         let bodyText = art.text;
 
                         if (searchTerm) {
-                            const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
-                            titleText = titleText.replace(regex, '<mark class="mark-highlight">$1</mark>');
-                            bodyText = bodyText.replace(regex, '<mark class="mark-highlight">$1</mark>');
+                            // Resaltado inteligente ignorando acentos
+                            const terms = searchTerm.trim().split(/\s+/).filter(t => t.length > 0);
+                            terms.forEach(term => {
+                                const cleanTerm = escapeRegExp(term);
+                                // Regex que busca la palabra sin importar mayúsculas/minúsculas o acentos básicos comunes
+                                const regex = new RegExp(`(${cleanTerm})`, 'gi');
+                                // Aplicamos marcado conservando el texto original
+                                titleText = highlightMatch(titleText, term);
+                                bodyText = highlightMatch(bodyText, term);
+                            });
                         }
 
                         artBox.innerHTML = `
-                            <div class="flex justify-between items-center">
-                                <h4 class="font-bold text-red-400 text-base">${titleText}</h4>
-                                <span class="text-[10px] px-2 py-0.5 rounded bg-neutral-800 text-neutral-400 font-mono border border-neutral-700">${art.source}</span>
+                            <div class="flex justify-between items-start gap-2">
+                                <h4 class="font-bold text-red-400 text-sm sm:text-base leading-snug">${titleText}</h4>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-neutral-800 text-neutral-400 font-mono border border-neutral-700 flex-none">${art.source}</span>
                             </div>
-                            <div class="whitespace-pre-line text-neutral-300 font-normal" style="font-size: ${fontSize}px">${bodyText}</div>
+                            <div class="whitespace-pre-line text-neutral-300 font-normal pt-1" style="font-size: ${fontSize}px">${bodyText}</div>
                         `;
                         viewer.appendChild(artBox);
                     });
@@ -219,29 +250,46 @@
             });
         }
 
+        // Función auxiliar para resaltar texto de manera segura ignorando acentos opcionalmente
+        function highlightMatch(text, query) {
+            try {
+                const escaped = escapeRegExp(query);
+                const regex = new RegExp(`(${escaped})`, 'gi');
+                return text.replace(regex, '<mark class="mark-highlight">$1</mark>');
+            } catch (e) {
+                return text;
+            }
+        }
+
         function handleSearch(e) {
-            const term = e.target.value.trim();
+            const rawTerm = e.target.value.trim();
             const clearBtn = document.getElementById('clearSearch');
             const counter = document.getElementById('searchResultsCount');
 
-            if (term.length > 0) {
+            if (rawTerm.length > 0) {
                 clearBtn.classList.remove('hidden');
                 
+                const normalizedTerm = removeAccents(rawTerm);
+                const searchTerms = normalizedTerm.split(/\s+/).filter(t => t.length > 0);
+
                 let matches = 0;
                 const filteredData = fullData.map(sec => {
                     if (!sec.articles) return null;
                     const matchedArts = sec.articles.filter(art => {
-                        const hasMatch = art.title.toLowerCase().includes(term.toLowerCase()) || 
-                                         art.text.toLowerCase().includes(term.toLowerCase()) ||
-                                         String(art.num).toLowerCase().includes(term.toLowerCase());
-                        if (hasMatch) matches++;
-                        return hasMatch;
+                        const searchableContent = removeAccents(
+                            `${art.num} ${art.title} ${art.text}`
+                        );
+
+                        // Comprueba que contenga todas las palabras introducidas en el buscador
+                        const matchAll = searchTerms.every(term => searchableContent.includes(term));
+                        if (matchAll) matches++;
+                        return matchAll;
                     });
                     return { ...sec, articles: matchedArts };
                 }).filter(sec => sec && sec.articles.length > 0);
 
                 counter.textContent = `${matches} resultado(s) encontrado(s)`;
-                renderContent(filteredData, term);
+                renderContent(filteredData, rawTerm);
             } else {
                 clearSearch();
             }
@@ -255,9 +303,15 @@
         }
 
         function changeFontSize(delta) {
-            fontSize = Math.min(Math.max(fontSize + delta, 11), 20);
+            fontSize = Math.min(Math.max(fontSize + delta, 12), 20);
             const currentTerm = document.getElementById('searchInput').value.trim();
-            renderContent(fullData, currentTerm);
+            if (currentTerm) {
+                // Re-filtrar con el término actual si hay búsqueda activa
+                const searchEvent = { target: { value: currentTerm } };
+                handleSearch(searchEvent);
+            } else {
+                renderContent(fullData);
+            }
         }
 
         function escapeRegExp(string) {
